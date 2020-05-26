@@ -4,7 +4,7 @@ import commonStyles from '../../commonStyles';
 const styles = StyleSheet.create({
     container: {
         marginTop: 30,
-        backgroundColor: commonStyles.colors.brown,
+        backgroundColor: commonStyles.colors.secondaryDark,
         marginHorizontal: 20,
     },
     header: {
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         padding: 20,
     }, 
     title: {
-        color: commonStyles.colors.secondary,
+        color: commonStyles.colors.brown,
         fontFamily: commonStyles.fontFamily.roboto,
         fontSize: 22,
     },

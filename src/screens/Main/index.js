@@ -3,6 +3,7 @@ import {
     View, 
     Text, 
     Image,
+    FlatList,
     TouchableOpacity,
     StatusBar, 
 } from 'react-native';
@@ -16,12 +17,55 @@ import logoImg from '../../../assets/images/icon.png';
 //componentes e telas
 import Home from '../Home';
 import Category from '../../components/Category';
-import { FlatList } from 'react-native-gesture-handler';
 
 export default class Main extends Component {
     state = {
-        showHome: false,
+        showHome: true,
+        categories: [
+            {
+                id: Math.random(),
+                title: 'Comida',
+                items: [
+                    {
+                        id: Math.random(),
+                        isChecked: true,
+                        desc: 'Item 1'
+                    },
+                    {
+                        id: Math.random(),
+                        isChecked: false,
+                        desc: 'Item 2'
+                    },
+                ]
+            },
+            {
+                id: Math.random(),
+                title: 'Roupas',
+                items: []
+            },
+            {
+                id: Math.random(),
+                title: 'Cozinha',
+                items: [
+                    {
+                        id: Math.random(),
+                        isChecked: true,
+                        desc: 'BUJÃO DE GÁS CROMADO'
+                    },
+                    {
+                        id: Math.random(),
+                        isChecked: false,
+                        desc: 'Item 2'
+                    },
+                ],
+            },
+        ]
     };
+
+    //Funções Categoria
+
+
+    //Funções Item
 
     render(){
         return (
@@ -39,10 +83,15 @@ export default class Main extends Component {
                             color = { commonStyles.colors.secondary } />
                     </TouchableOpacity>
                 </View>
-                <Category title='Comida' />
-                <Category title='Limpeza' />
-                <Category title='Roupas' />
-                <Category title='Papelaria' />
+                <View style = { styles.categoryList }>
+                    <FlatList data = { this.state.categories }
+                        keyExtractor = { category => category.id }
+                        renderItem = { (category) => {
+                            return (
+                                <Category { ...category.item }/>             
+                            );
+                        }}/>
+                </View>
             </View>
         );
     }

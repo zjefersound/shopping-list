@@ -8,6 +8,7 @@ export default {
         primary: '#F47E82',
         primaryDark: '#CC6F77',
         secondary: '#F6F1C9',
+        secondaryMiddle: '#f6ddb9',
         secondaryDark: '#F6C9AA',
         brown: '#846666',
         green: '#698A68',

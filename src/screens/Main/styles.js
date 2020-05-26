@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
         marginRight: 15,
         paddingHorizontal: 15,
         justifyContent: 'center',
+    },
+    categoryList:{
+        flex: 1,
     }
 });
 

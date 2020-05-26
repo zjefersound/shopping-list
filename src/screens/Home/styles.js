@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     },
     buttonStart: {
         backgroundColor: commonStyles.colors.secondary,
-        fontSize: 25,
+        fontSize: 20,
         color: commonStyles.colors.brown,
         height: 60,
         lineHeight: 60,
