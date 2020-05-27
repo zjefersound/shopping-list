@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     categoryList:{
         flex: 1,
-    }
+    },
 });
 
 export default styles;

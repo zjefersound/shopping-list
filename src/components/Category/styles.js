@@ -3,7 +3,7 @@ import commonStyles from '../../commonStyles';
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 30,
+        marginBottom: 30,
         backgroundColor: commonStyles.colors.secondaryDark,
         marginHorizontal: 20,
     },

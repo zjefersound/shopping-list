@@ -17,19 +17,20 @@ import Item from '../Item';
 export default class Category extends Component {
     state = {
         items: [...this.props.items],
-        itemsVisible: []
+        showItems: true,
     };
 
     render(){
+        const containerStyle = this.props.first ? 
+            [styles.container,{ marginTop: 30 }] : styles.container;
         return(
-            <View style = { styles.container }>
+            <View style = { containerStyle }>
                 <View style = { styles.header }>
                     <View style = { styles.left }>
                         <TouchableOpacity activeOpacity = {0.7}
                             style = { styles.buttonShow }
-                            onPress = { this.props.onShow }>
-                            <Icon name = 'angle-down' size = {30}
-                                color = { commonStyles.colors.brown }/>
+                            onPress = { () => this.setState({ showItems: !this.state.showItems }) }>
+                            { getShowItems(this.state.showItems) }
                         </TouchableOpacity>
                         <Text style = { styles.title }>{ this.props.title }</Text> 
                     </View> 
@@ -42,7 +43,7 @@ export default class Category extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>  
-                <FlatList data = { this.state.items } 
+                <FlatList data = { this.state.showItems ? this.state.items : null } 
                     keyExtractor = { item => `${item.id}` }
                     renderItem = { ({ item }) => {
                         return(
@@ -53,3 +54,16 @@ export default class Category extends Component {
         );
     }
 }; 
+function getShowItems( visibility ){
+    if ( visibility ){
+        return (
+            <Icon name = 'angle-up' size = {30}
+                color = { commonStyles.colors.brown }/>
+        );
+    }else{
+        return (
+            <Icon name = 'angle-down' size = {30}
+                color = { commonStyles.colors.brown }/>
+        );
+    }
+}

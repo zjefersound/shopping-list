@@ -29,7 +29,7 @@ export default class Main extends Component {
                     {
                         id: Math.random(),
                         isChecked: true,
-                        desc: 'Item 1'
+                        desc: 'Item 23'
                     },
                     {
                         id: Math.random(),
@@ -42,6 +42,22 @@ export default class Main extends Component {
                 id: Math.random(),
                 title: 'Roupas',
                 items: []
+            },
+            {
+                id: Math.random(),
+                title: 'Cozinha',
+                items: [
+                    {
+                        id: Math.random(),
+                        isChecked: true,
+                        desc: 'BUJÃO DE GÁS CROMADO'
+                    },
+                    {
+                        id: Math.random(),
+                        isChecked: false,
+                        desc: 'Item 2'
+                    },
+                ],
             },
             {
                 id: Math.random(),
@@ -84,11 +100,13 @@ export default class Main extends Component {
                     </TouchableOpacity>
                 </View>
                 <View style = { styles.categoryList }>
-                    <FlatList data = { this.state.categories }
-                        keyExtractor = { category => category.id }
+                    <FlatList
+                        data = { this.state.categories }
+                        keyExtractor = { category => `${category.id}` }
                         renderItem = { (category) => {
+                            const isFirst = category.index === 0;
                             return (
-                                <Category { ...category.item }/>             
+                                <Category { ...category.item } first = { isFirst }/>             
                             );
                         }}/>
                 </View>
