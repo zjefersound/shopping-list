@@ -68,20 +68,48 @@ export default class Main extends Component {
                         isChecked: true,
                         desc: 'BUJÃO DE GÁS CROMADO'
                     },
-                    {
-                        id: Math.random(),
-                        isChecked: false,
-                        desc: 'Item 2'
-                    },
+                    
                 ],
             },
-        ]
+        ],
+        categoriesVisible: [],
     };
 
+    componentDidMount = () => {
+        this.setState({ showHome: !this.state.categories.length > 0 },this.filterCategories);
+    };
+    filterCategories = () => {
+        let categoriesVisible = [ ...this.state.categories ];
+        this.setState({ categoriesVisible });
+    }
     //Funções Categoria
 
-
+    
     //Funções Item
+    onToggleCheck = ( category_id, item_id ) => {
+        const categories = [ ...this.state.categories ];
+        categories.forEach( category => {
+            if( category.id === category_id ){
+                const items = category.items;
+                items.forEach( item => {
+                    if(item.id === item_id) {
+                        item.isChecked = !item.isChecked;
+                    }
+                });
+            }
+        });
+        this.setState({ categories }, this.filterCategories);
+    };
+    onDeleteItem = ( category_id, item_id ) => {
+        const categories = [ ...this.state.categories ];
+        categories.forEach( category => {
+            if( category.id === category_id ){
+                const items = category.items.filter( item => item.id !== item_id );
+                category.items = items;
+            }
+        });
+        this.setState({ categories });
+    };
 
     render(){
         return (
@@ -101,15 +129,23 @@ export default class Main extends Component {
                 </View>
                 <View style = { styles.categoryList }>
                     <FlatList
-                        data = { this.state.categories }
+                        data = { this.state.categoriesVisible }
                         keyExtractor = { category => `${category.id}` }
-                        renderItem = { (category) => {
+                        renderItem = {(category) => {
                             const isFirst = category.index === 0;
                             return (
-                                <Category { ...category.item } first = { isFirst }/>             
+                                <Category { ...category.item } first = { isFirst } 
+                                    onToggleCheck = { this.onToggleCheck }
+                                    onDeleteItem = { this.onDeleteItem }/>             
                             );
                         }}/>
                 </View>
+                <TouchableOpacity style = { styles.buttonAddCategory }
+                    activeOpacity = {0.8}>
+                    <Icon name = 'plus' size = {35} 
+                        color = { commonStyles.colors.secondary }/>
+                    <Text style = { styles.labelAddCategory }>Nova categoria</Text>
+                </TouchableOpacity>
             </View>
         );
     }

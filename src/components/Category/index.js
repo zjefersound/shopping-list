@@ -47,7 +47,9 @@ export default class Category extends Component {
                     keyExtractor = { item => `${item.id}` }
                     renderItem = { ({ item }) => {
                         return(
-                            <Item { ...item } />
+                            <Item { ...item } categoryId = { this.props.id }
+                                onToggleCheck = { this.props.onToggleCheck } 
+                                onDeleteItem = { this.props.onDeleteItem }/>
                         );
                     } }/>
             </View>

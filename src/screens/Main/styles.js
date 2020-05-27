@@ -33,9 +33,22 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         justifyContent: 'center',
     },
-    categoryList:{
+    categoryList: {
         flex: 1,
     },
+    buttonAddCategory: {
+        backgroundColor: commonStyles.colors.primary,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+    },
+    labelAddCategory: {
+        fontFamily: commonStyles.fontFamily.ropaSans,
+        fontSize: 25,
+        color: commonStyles.colors.secondary,
+        marginLeft: 10
+    }
 });
 
 export default styles;
