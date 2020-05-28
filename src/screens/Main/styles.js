@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: commonStyles.colors.secondary,
         marginLeft: 10
+    },
+    indicateAddCategory: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        paddingBottom: 30
     }
 });
 

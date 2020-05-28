@@ -5,6 +5,7 @@ import {
     Text, 
     TouchableOpacity,
 } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 //estilos e imagens
 import styles from './styles';
@@ -20,6 +21,13 @@ export default class Category extends Component {
         showItems: true,
     };
     
+    getLeftContent = () => {
+        return (
+            <View style = { styles.delete }>
+                <Icon name = 'trash' size = {35} color = '#CC6F7788' />
+            </View>
+        );
+    }
     //Provavelmente tem um jeito melhor de fazer 
     onDeleteItem = item_id => {
         const items = [ ...this.state.items ].filter(item => item.id !== item_id );
@@ -30,35 +38,38 @@ export default class Category extends Component {
         const containerStyle = this.props.first ? 
             [styles.container,{ marginTop: 30 }] : styles.container;
         return(
-            <View style = { containerStyle }>
-                <View style = { styles.header }>
-                    <View style = { styles.left }>
-                        <TouchableOpacity activeOpacity = {0.7}
-                            style = { styles.buttonShow }
-                            onPress = { () => this.setState({ showItems: !this.state.showItems }) }>
-                            { getShowItems(this.state.showItems) }
-                        </TouchableOpacity>
-                        <Text style = { styles.title }>{ this.props.title }</Text> 
-                    </View> 
-                    <View style = { styles.right }>
-                        <TouchableOpacity activeOpacity = {0.7}
-                            style = { styles.buttonAdd }
-                            onPress = { this.props.onAdd }>
-                            <Icon name = 'plus' size = {30} 
-                                color = { commonStyles.colors.brown }/>
-                        </TouchableOpacity>
-                    </View>
-                </View>  
-                <FlatList data = { this.state.showItems ? this.state.items : null } 
-                    keyExtractor = { item => `${item.id}` }
-                    renderItem = { ({ item }) => {
-                        return(
-                            <Item { ...item } categoryId = { this.props.id }
-                                onToggleCheckItem = { this.props.onToggleCheckItem } 
-                                onDeleteItem = { this.onDeleteItem } />
-                        );
-                    } }/>
-            </View>
+            <Swipeable renderLeftActions = { this.getLeftContent }
+                onSwipeableLeftOpen = { () => this.props.onDeleteCategory(this.props.id) }>
+                <View style = { containerStyle }>
+                    <View style = { styles.header }>
+                        <View style = { styles.left }>
+                            <TouchableOpacity activeOpacity = {0.7}
+                                style = { styles.buttonShow }
+                                onPress = { () => this.setState({ showItems: !this.state.showItems }) }>
+                                { getShowItems(this.state.showItems) }
+                            </TouchableOpacity>
+                            <Text style = { styles.title }>{ this.props.title }</Text> 
+                        </View> 
+                        <View style = { styles.right }>
+                            <TouchableOpacity activeOpacity = {0.7}
+                                style = { styles.buttonAdd }
+                                onPress = { this.props.onAdd }>
+                                <Icon name = 'plus' size = {30} 
+                                    color = { commonStyles.colors.brown }/>
+                            </TouchableOpacity>
+                        </View>
+                    </View>  
+                    <FlatList data = { this.state.showItems ? this.state.items : null } 
+                        keyExtractor = { item => `${item.id}` }
+                        renderItem = { ({ item }) => {
+                            return(
+                                <Item { ...item } categoryId = { this.props.id }
+                                    onToggleCheckItem = { this.props.onToggleCheckItem } 
+                                    onDeleteItem = { this.onDeleteItem } />
+                            );
+                        } }/>
+                </View>
+            </Swipeable>
         );
     }
 }; 

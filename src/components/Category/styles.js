@@ -29,6 +29,11 @@ const styles = StyleSheet.create({
     },
     buttonAdd: {
         padding: 20,
+    },
+    delete: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
 

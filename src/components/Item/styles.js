@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     pending: {
-        backgroundColor: commonStyles.colors.primaryDark,
+        backgroundColor: '#CC6F77',
         height: 30,
         width: 30,
         borderRadius: 15,
