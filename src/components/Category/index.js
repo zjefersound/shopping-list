@@ -19,7 +19,13 @@ export default class Category extends Component {
         items: [...this.props.items],
         showItems: true,
     };
-
+    
+    //Provavelmente tem um jeito melhor de fazer 
+    onDeleteItem = item_id => {
+        const items = [ ...this.state.items ].filter(item => item.id !== item_id );
+        this.setState({ items });
+        this.props.onDeleteItem(this.props.id, item_id);
+    }
     render(){
         const containerStyle = this.props.first ? 
             [styles.container,{ marginTop: 30 }] : styles.container;
@@ -48,8 +54,8 @@ export default class Category extends Component {
                     renderItem = { ({ item }) => {
                         return(
                             <Item { ...item } categoryId = { this.props.id }
-                                onToggleCheck = { this.props.onToggleCheck } 
-                                onDeleteItem = { this.props.onDeleteItem }/>
+                                onToggleCheckItem = { this.props.onToggleCheckItem } 
+                                onDeleteItem = { this.onDeleteItem } />
                         );
                     } }/>
             </View>

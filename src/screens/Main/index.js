@@ -86,7 +86,7 @@ export default class Main extends Component {
 
     
     //Funções Item
-    onToggleCheck = ( category_id, item_id ) => {
+    onToggleCheckItem = ( category_id, item_id ) => {
         const categories = [ ...this.state.categories ];
         categories.forEach( category => {
             if( category.id === category_id ){
@@ -98,7 +98,7 @@ export default class Main extends Component {
                 });
             }
         });
-        this.setState({ categories }, this.filterCategories);
+        this.setState({ categories });
     };
     onDeleteItem = ( category_id, item_id ) => {
         const categories = [ ...this.state.categories ];
@@ -135,7 +135,7 @@ export default class Main extends Component {
                             const isFirst = category.index === 0;
                             return (
                                 <Category { ...category.item } first = { isFirst } 
-                                    onToggleCheck = { this.onToggleCheck }
+                                    onToggleCheckItem = { this.onToggleCheckItem }
                                     onDeleteItem = { this.onDeleteItem }/>             
                             );
                         }}/>

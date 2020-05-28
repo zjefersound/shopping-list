@@ -22,7 +22,7 @@ export default props => {
         return (
             <TouchableOpacity style = { styles.buttonDelete }
                 activeOpacity = {0.7}
-                onPress = { () => props.onDeleteItem(props.categoryId, props.id) }>
+                onPress = { () => props.onDeleteItem(props.id) }>
                 <Icon name = 'trash' size = {25}
                     color = { commonStyles.colors.secondary }/>
             </TouchableOpacity>
@@ -33,7 +33,7 @@ export default props => {
         <Swipeable overshootRight = { false } 
             renderRightActions = { () => getRightRender( props.id ) }>
             <View style = { styles.container }>
-                <TouchableWithoutFeedback onPress = { () => props.onToggleCheck(props.categoryId, props.id) }>
+                <TouchableWithoutFeedback onPress = { () => props.onToggleCheckItem(props.categoryId, props.id) }>
                     <View style = { styles.checkContainer }>
                         { getCheckView(props.isChecked) }
                     </View>
