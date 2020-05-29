@@ -75,6 +75,9 @@ export default class Main extends Component {
         ],
         addModalProps: {
             visible: false,
+            title: '',
+            placeholder: '',
+            onSave: null
         }
     };
 
@@ -86,10 +89,25 @@ export default class Main extends Component {
         const addModalProps = { ...this.state.addModalProps };
         addModalProps.visible = visibility;
         this.setState({ addModalProps });
-        console.log('ok')
     };
+    openAddCategory = () => {
+        const addModalProps = this.state.addModalProps;
+        addModalProps.title = 'Nova categoria';
+        addModalProps.placeholder = 'Ex: Roupas, Bebidas';
+        this.setState({ addModalProps });
+        this.visibilityAddModal(true);
+    }
 
     //Funções Categoria
+    renderCategories = category => {
+        const isFirst = category.index === 0;
+        return (
+            <Category { ...category.item } first = { isFirst } 
+                onToggleCheckItem = { this.onToggleCheckItem }
+                onDeleteItem = { this.onDeleteItem }
+                onDeleteCategory = { this.onDeleteCategory }/>             
+        );
+    };
     onDeleteCategory = category_id => {
         const categories = [ ...this.state.categories ]
             .filter( category => category.id != category_id );
@@ -152,25 +170,19 @@ export default class Main extends Component {
                         <FlatList
                             data = { this.state.categories }
                             keyExtractor = { category => `${category.id}` }
-                            renderItem = {(category) => {
-                                const isFirst = category.index === 0;
-                                return (
-                                    <Category { ...category.item } first = { isFirst } 
-                                        onToggleCheckItem = { this.onToggleCheckItem }
-                                        onDeleteItem = { this.onDeleteItem }
-                                        onDeleteCategory = { this.onDeleteCategory }/>             
-                                );
-                            }}/>
+                            renderItem = { this.renderCategories }/>
                     }
                 </View>
 
-                <AddModal onCancel = { () => this.visibilityAddModal(false) } 
+                <AddModal onCancel = { () => this.visibilityAddModal(false) }
+                    title = { this.state.addModalProps.title } 
+                    placeholder = { this.state.addModalProps.placeholder }
                     isVisible = { this.state.addModalProps.visible }/>
 
                 <TouchableOpacity style = { styles.buttonAddCategory }
                     activeOpacity = {0.8}
-                    onPress = { () => this.visibilityAddModal(true) }>
-                    <Icon name = 'plus' size = {35} 
+                    onPress = { this.openAddCategory }>
+                    <Icon name = 'plus' size = {25} 
                         color = { commonStyles.colors.secondary }/>
                     <Text style = { styles.labelAddCategory }>
                         Nova categoria</Text>

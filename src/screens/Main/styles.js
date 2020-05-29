@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 10,
+        padding: 20,
     },
     labelAddCategory: {
-        fontFamily: commonStyles.fontFamily.ropaSans,
-        fontSize: 25,
+        fontFamily: commonStyles.fontFamily.roboto,
+        fontSize: 18,
         color: commonStyles.colors.secondary,
         marginLeft: 10
     },

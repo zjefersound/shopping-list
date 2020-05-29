@@ -20,7 +20,20 @@ export default class Category extends Component {
         items: [...this.props.items],
         showItems: true,
     };
-    
+    getShowItems( visibility ){
+        if ( visibility ){
+            return (
+                <Icon name = 'angle-up' size = {30}
+                    color = { commonStyles.colors.brown }/>
+            );
+        }else{
+            return (
+                <Icon name = 'angle-down' size = {30}
+                    color = { commonStyles.colors.brown }/>
+            );
+        }
+    }
+
     getLeftContent = () => {
         return (
             <View style = { styles.delete }>
@@ -28,6 +41,13 @@ export default class Category extends Component {
             </View>
         );
     }
+    renderItem = ({ item }) => {
+        return(
+            <Item { ...item } categoryId = { this.props.id }
+                onToggleCheckItem = { this.props.onToggleCheckItem } 
+                onDeleteItem = { this.onDeleteItem } />
+        );
+    };
     //Provavelmente tem um jeito melhor de fazer 
     onDeleteItem = item_id => {
         const items = [ ...this.state.items ].filter(item => item.id !== item_id );
@@ -38,17 +58,20 @@ export default class Category extends Component {
         const containerStyle = this.props.first ? 
             [styles.container,{ marginTop: 30 }] : styles.container;
         return(
-            <Swipeable renderLeftActions = { this.getLeftContent }
-                onSwipeableLeftOpen = { () => this.props.onDeleteCategory(this.props.id) }>
-                <View style = { containerStyle }>
+           
+            <View style = { containerStyle }>
+                <Swipeable renderLeftActions = { this.getLeftContent }
+                    onSwipeableLeftOpen = { () => this.props.onDeleteCategory(this.props.id) }>
                     <View style = { styles.header }>
                         <View style = { styles.left }>
                             <TouchableOpacity activeOpacity = {0.7}
                                 style = { styles.buttonShow }
-                                onPress = { () => this.setState({ showItems: !this.state.showItems }) }>
-                                { getShowItems(this.state.showItems) }
+                                onPress = { () => 
+                                    this.setState({ showItems: !this.state.showItems }) }>
+                                { this.getShowItems(this.state.showItems) }
                             </TouchableOpacity>
-                            <Text style = { styles.title }>{ this.props.title }</Text> 
+                            <Text style = { styles.title }>
+                                { this.props.title }</Text> 
                         </View> 
                         <View style = { styles.right }>
                             <TouchableOpacity activeOpacity = {0.7}
@@ -61,28 +84,10 @@ export default class Category extends Component {
                     </View>  
                     <FlatList data = { this.state.showItems ? this.state.items : null } 
                         keyExtractor = { item => `${item.id}` }
-                        renderItem = { ({ item }) => {
-                            return(
-                                <Item { ...item } categoryId = { this.props.id }
-                                    onToggleCheckItem = { this.props.onToggleCheckItem } 
-                                    onDeleteItem = { this.onDeleteItem } />
-                            );
-                        } }/>
-                </View>
-            </Swipeable>
+                        renderItem = { this.renderItem }/>
+                </Swipeable>
+            </View>
+
         );
     }
 }; 
-function getShowItems( visibility ){
-    if ( visibility ){
-        return (
-            <Icon name = 'angle-up' size = {30}
-                color = { commonStyles.colors.brown }/>
-        );
-    }else{
-        return (
-            <Icon name = 'angle-down' size = {30}
-                color = { commonStyles.colors.brown }/>
-        );
-    }
-}

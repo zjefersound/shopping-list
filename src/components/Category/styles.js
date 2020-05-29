@@ -4,11 +4,11 @@ import commonStyles from '../../commonStyles';
 const styles = StyleSheet.create({
     container: {
         marginBottom: 30,
-        backgroundColor: commonStyles.colors.secondaryDark,
         marginHorizontal: 20,
     },
     header: {
         flexDirection: 'row',
+        backgroundColor: commonStyles.colors.secondaryDark,
         height: 65,
     },
     left: { 

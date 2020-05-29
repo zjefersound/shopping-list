@@ -17,21 +17,22 @@ const styles = StyleSheet.create({
     },
     headerTitle: {
         fontFamily: commonStyles.fontFamily.roboto,
-        fontSize: 28,
+        fontSize: 26,
         color: commonStyles.colors.secondary,
     },
     body: {
         padding: 25,
     },  
     inputText: {
-        borderWidth: 1,
-        borderColor: commonStyles.colors.brown,
         borderRadius: 30,
         height: 60,
+        backgroundColor: commonStyles.colors.secondaryMiddle,
+
 
         paddingLeft: 30,
+        paddingRight: 20,
         color: commonStyles.colors.brown,
-        fontSize: 24,
+        fontSize: 20,
     },
     buttonsBar: {
         flexDirection: 'row',
@@ -48,8 +49,8 @@ const styles = StyleSheet.create({
     },
     buttonCancelLabel: {
         color: commonStyles.colors.brown,
-        fontFamily: commonStyles.fontFamily.robotoBold,
-        fontSize: 20,
+        fontFamily: commonStyles.fontFamily.roboto,
+        fontSize: 18,
     },
     buttonSave: {
         marginLeft: 25,
@@ -63,7 +64,7 @@ const styles = StyleSheet.create({
     buttonSaveLabel: {
         color: commonStyles.colors.secondary,
         fontFamily: commonStyles.fontFamily.robotoBold,
-        fontSize: 20,
+        fontSize: 18,
     },
 });
 

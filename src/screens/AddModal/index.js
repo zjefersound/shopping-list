@@ -12,6 +12,7 @@ import {
 import styles from './styles';
 
 export default props => {
+
     return(
         <Modal transparent = { true } animationType = 'fade'
             visible = { props.isVisible } onRequestClose = { props.onCancel }>
@@ -21,10 +22,14 @@ export default props => {
 
             <View style = { styles.container }>
                 <View style = { styles.header }>
-                    <Text style = { styles.headerTitle }>Nova Categoria</Text>
+                    <Text style = { styles.headerTitle }>
+                        { props.title }</Text>
                 </View>
                 <View style = { styles.body }>
-                    <TextInput style = { styles.inputText } />  
+                    <TextInput placeholder = { props.placeholder } 
+                        style = { styles.inputText } 
+                        value = { props.value }
+                        onChangeText = { props.onChangeText }/>  
                     <View style = { styles.buttonsBar }>
                         <TouchableOpacity style = { styles.buttonCancel } 
                             activeOpacity = {0.7}
@@ -34,7 +39,7 @@ export default props => {
                         </TouchableOpacity>
                         <TouchableOpacity style = { styles.buttonSave } 
                             activeOpacity = {0.7}
-                            onPress = { props.onCancel }>
+                            onPress = { () => props.onSave( props.value ) }>
                             <Text style = { styles.buttonSaveLabel }>
                                 Salvar</Text>
                         </TouchableOpacity>
