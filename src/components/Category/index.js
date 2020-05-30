@@ -4,6 +4,7 @@ import {
     FlatList, 
     Text, 
     TouchableOpacity,
+    TouchableWithoutFeedback,
 } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
@@ -66,8 +67,13 @@ export default props => {
                                 setShowItems( !showItems ) }>
                             { getShowItems(showItems) }
                         </TouchableOpacity>
-                        <Text style = { styles.title }>
-                            { props.title }</Text> 
+                        <TouchableWithoutFeedback
+                            onLongPress = { () => 
+                                props.onUpdateCategory( props.id, props.title ) }>
+                            <Text style = { styles.title }>
+                            { props.title }</Text>
+                        </TouchableWithoutFeedback>
+                         
                     </View> 
                     <View style = { styles.right }>
                         <TouchableOpacity activeOpacity = {0.7}

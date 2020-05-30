@@ -65,6 +65,15 @@ export default class Main extends Component {
         this.setState({ addModalProps });
         this.visibilityAddModal(true);
     };
+    openUpdateCategory = (category_id, value) => {
+        const addModalProps = this.state.addModalProps;
+        addModalProps.title = 'Atualizar categoria';
+        addModalProps.placeholder = `Título atual: ${value}` ;
+        addModalProps.category_id = category_id;
+        addModalProps.onSave = this.onUpdateCategory;
+        this.setState({ addModalProps });
+        this.visibilityAddModal(true);
+    };
     onCreateCategory = value => {
         const categories = [ ...this.state.categories ];
         const newCategory = {
@@ -73,6 +82,15 @@ export default class Main extends Component {
             items: []
         };
         categories.push(newCategory);
+        this.setState({ categories }, this.updateStorage);
+    };
+    onUpdateCategory = ( value, category_id ) => {
+        const categories = [ ...this.state.categories ];
+        categories.forEach( category => {
+            if( category.id === category_id ) {
+                category.title = value;
+            }
+        });
         this.setState({ categories }, this.updateStorage);
     };
     onDeleteCategory = category_id => {
@@ -88,6 +106,7 @@ export default class Main extends Component {
                 onToggleCheckItem = { this.onToggleCheckItem }
                 onDeleteItem = { this.onDeleteItem }
                 onAddItem = { this.openAddItem }
+                onUpdateCategory = { this.openUpdateCategory }
                 onDeleteCategory = { this.onDeleteCategory }/>             
         );
     };
@@ -191,7 +210,7 @@ export default class Main extends Component {
                         // Indica onde começar, caso não tenha itens
                         <View style = { styles.indicateAddCategory }>
                             <Text style = { styles.indicateAddCategoryText }>
-                                Começe adicionando uma categoria
+                                Comece adicionando uma categoria
                             </Text>
                             <Icon name = 'arrow-down' size = {80}
                             color = {commonStyles.colors.secondaryDark}/>
