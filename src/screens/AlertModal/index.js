@@ -4,7 +4,6 @@ import {
     Modal, 
     View, 
     Text,
-    TextInput,
     TouchableOpacity,
     TouchableWithoutFeedback,
 } from 'react-native';
@@ -12,34 +11,21 @@ import {
 //estilos e imagens
 import styles from './styles';
 
-const initialState = {
-    title: '',
-    placeholder: '',
-    value: '',
-    category_id: '',
 
-};
-export default class AddModal extends Component {
+export default class AlertModal extends Component {
     state = {
-        ...initialState
+        
     }
     //funções 
-    save = () => {
-        if( this.state.value == '') {
-            Alert.alert('Dados inválidos','Corrija os dados e tente novamente');
-            return;
-        }
+    confirm = () => {
         try {
-            //Deve ter como fazer sem determinar a categoria
-            this.props.onSave( this.state.value, this.props.category_id || null);
+            this.props.onConfirm();
             this.props.onCancel();
-            this.setState({ ...initialState });
         } catch (error) {
             Alert.alert('Erro ao salvar!', `${error}`);
         }
 
     };
-
     
     render(){
         return(
@@ -54,11 +40,8 @@ export default class AddModal extends Component {
                         <Text style = { styles.headerTitle }>
                             { this.props.title }</Text>
                     </View>
-                    <View style = { styles.body }>
-                        <TextInput placeholder = { this.props.placeholder } 
-                            style = { styles.inputText } 
-                            value = { this.state.value }
-                            onChangeText = { value => this.setState({ value }) }/>  
+                    <View style = { styles.body }>  
+                        <Text style = { styles.description }>{ this.props.description }</Text>
                         <View style = { styles.buttonsBar }>
                             <TouchableOpacity style = { styles.buttonCancel } 
                                 activeOpacity = {0.7}
@@ -66,11 +49,12 @@ export default class AddModal extends Component {
                                 <Text style = { styles.buttonCancelLabel }>
                                     Cancelar</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style = { styles.buttonSave } 
+                            <TouchableOpacity style = { styles.buttonConfirm } 
                                 activeOpacity = {0.7}
-                                onPress = { this.save }>
-                                <Text style = { styles.buttonSaveLabel }>
-                                    Salvar</Text>
+                                onPress = { this.confirm }>
+                                <Text style = { styles.buttonConfirmLabel }>
+                                    
+                                    Ok</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

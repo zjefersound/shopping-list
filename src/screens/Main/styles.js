@@ -54,6 +54,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
         paddingBottom: 30
+    },
+    indicateAddCategoryText: {
+        fontFamily: commonStyles.fontFamily.robotoBold,
+        width: '70%',
+        fontSize: 30,
+        marginVertical: 25,
+        textAlign: 'center',
+        color: commonStyles.colors.secondaryDark,
     }
 });
 

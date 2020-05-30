@@ -17,6 +17,22 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 //funcionalidades
 
 export default props => {
+    function getCheckView( isChecked ) {
+        if ( isChecked ){
+            return(
+                <View style = { styles.done }>
+                    <Icon name = 'check' size = {15} 
+                        color = { commonStyles.colors.secondary }/>
+                </View>
+            );
+        }else {
+            return(
+                <View style = { styles.pending }>
+                    
+                </View>
+            );
+        }
+    }
 
     const getRightRender = ( id ) => {
         return (
@@ -45,20 +61,3 @@ export default props => {
         </Swipeable>
     );
 };
-
-function getCheckView( isChecked ) {
-    if ( isChecked ){
-        return(
-            <View style = { styles.done }>
-                <Icon name = 'check' size = {15} 
-                    color = { commonStyles.colors.secondary }/>
-            </View>
-        );
-    }else {
-        return(
-            <View style = { styles.pending }>
-                
-            </View>
-        );
-    }
-}
