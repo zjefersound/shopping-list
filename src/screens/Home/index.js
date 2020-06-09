@@ -24,8 +24,9 @@ export default props => {
                     <Image source = { logoImg } style = { styles.logo } />
                     <Text style = { styles.logoTitle }>Shopping List</Text>
                     <TouchableOpacity activeOpacity = { 0.7 }
+                    style = { styles.buttonStart }
                         onPress = { props.onCancel }>
-                        <Text style = { styles.buttonStart }>+ Criar lista</Text>
+                        <Text style = { styles.buttonText }>+ Criar lista</Text>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>

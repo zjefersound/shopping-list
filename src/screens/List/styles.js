@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     indicateAddCategoryText: {
         fontFamily: commonStyles.fontFamily.robotoBold,
         width: '70%',
-        fontSize: 30,
+        fontSize: 20,
         marginVertical: 25,
         textAlign: 'center',
         color: commonStyles.colors.secondaryDark,

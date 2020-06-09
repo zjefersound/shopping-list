@@ -25,10 +25,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: commonStyles.colors.brown,
         height: 60,
-        lineHeight: 60,
         paddingHorizontal: 45,
         borderRadius: 30,
         marginTop: 35,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    buttonText: {
+        color: commonStyles.colors.brown,
     }
 
 });
