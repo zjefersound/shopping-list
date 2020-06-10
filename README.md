@@ -1,10 +1,6 @@
 # shopping-list
-Aplicativo simples para fazer listas de compras organizados por categorias
+Aplicativo simples para fazer listas de compras separando itens por categorias.
 
-Possui alguns componentes baseados em classes e outro funcionais
+O intuito dessa aplicação foi auto avaliar meus próprios conhecimentos adquiridos ao estudar react native.
 
-Permite Criar, Alterar e Excluir categorias e itens.
-
-Para armazenar os dados da lista foi usado AsyncStorage.
-
-É uma aplicação offline.
+O app permite criar, alterar e excluir categorias e itens. Para armazenar os dados da lista foi usado AsyncStorage, pois é o sistema funciona no dispositivo.
