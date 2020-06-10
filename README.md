@@ -1,7 +1,7 @@
 # shopping-list
 Aplicativo simples para fazer listas de compras organizados por categorias
 
-O aplicativo possui alguns componentes baseados em classes e outro funcionais
+Possui alguns componentes baseados em classes e outro funcionais
 
 Permite Criar, Alterar e Excluir categorias e itens.
 
